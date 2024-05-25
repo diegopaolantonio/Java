@@ -1,4 +1,4 @@
-public class Main {
+public class numeroFlotantePaolantonio {
     public static void main(String[] args){
 //        Numero flotante original
         float numeroFloat= 524.874f;
@@ -16,6 +16,5 @@ public class Main {
         System.out.println("Numero Original: " + numeroFloat);
         System.out.println("Parte entera: " + parteEntera);
         System.out.println("Parte decimal: " + String.format("%.3f", parteDecimal));
-
     }
 }
