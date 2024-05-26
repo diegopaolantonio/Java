@@ -1,7 +1,12 @@
+import java.util.Scanner;
+
 public class numeroFlotantePaolantonio {
     public static void main(String[] args){
+
+        Scanner scanner = new Scanner(System.in);
 //        Numero flotante original
-        float numeroFloat= 524.874f;
+        System.out.println("Ingrese un numero float con 5 decimales maximo: ");
+        float numeroFloat = scanner.nextFloat();
 
 //        Variables a imprimir
         int parteEntera;
@@ -15,6 +20,6 @@ public class numeroFlotantePaolantonio {
 //        Imprimo el numero original, la parte entera y la decimal
         System.out.println("Numero Original: " + numeroFloat);
         System.out.println("Parte entera: " + parteEntera);
-        System.out.println("Parte decimal: " + String.format("%.3f", parteDecimal));
+        System.out.println("Parte decimal: " + String.format("%.5f", parteDecimal));
     }
 }
