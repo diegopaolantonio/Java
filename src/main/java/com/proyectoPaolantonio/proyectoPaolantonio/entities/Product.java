@@ -3,15 +3,15 @@ package com.proyectoPaolantonio.proyectoPaolantonio.entities;
 import jakarta.persistence.*;
 import lombok.*;
 
-@Entity @Table(name = "clients")
+@Entity @Table(name = "products")
 @NoArgsConstructor @ToString @EqualsAndHashCode
-public class Client {
+public class Product {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Getter @Setter private Long id;
 
-    @Getter @Setter private String name;
-    @Getter @Setter private String lastname;
-    @Getter @Setter private Integer docnumber;
-
+    @Getter @Setter private Integer code;
+    @Getter @Setter private String description;
+    @Getter @Setter private Integer stock;
+    @Getter @Setter private double price;
 }

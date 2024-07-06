@@ -1,10 +1,11 @@
 package com.proyectoPaolantonio.proyectoPaolantonio.controllers;
 
-import com.proyectoPaolantonio.proyectoPaolantonio.entities.Client;
-import com.proyectoPaolantonio.proyectoPaolantonio.services.ClientsService;
+import com.proyectoPaolantonio.proyectoPaolantonio.entities.Product;
+import com.proyectoPaolantonio.proyectoPaolantonio.services.ProductsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -12,15 +13,15 @@ import java.util.Map;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("api/v1/clients")
-public class ClientsController {
+@RequestMapping("api/v1/products")
+public class ProductsController {
 
-    @Autowired private ClientsService service;
+    @Autowired private ProductsService service;
 
     @PostMapping
-    public ResponseEntity<Client> create(@RequestBody Client client) {
+    public ResponseEntity<Product> create(@RequestBody Product product) {
         try {
-            return new ResponseEntity<>(service.save(client), HttpStatus.CREATED);
+            return new ResponseEntity<>(service.save(product), HttpStatus.CREATED);
         } catch (Exception e) {
             System.out.println(e);
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
@@ -28,10 +29,10 @@ public class ClientsController {
     }
 
     @GetMapping
-    public ResponseEntity<List<Client>> readAll() {
+    public ResponseEntity<List<Product>> readAll() {
         try {
-            List<Client> clients = service.readAll();
-            return ResponseEntity.ok(clients);
+            List<Product> products = service.readAll();
+            return ResponseEntity.ok(products);
         } catch (Exception e) {
             System.out.println(e);
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
@@ -41,7 +42,7 @@ public class ClientsController {
     @GetMapping("/{id}")
     public ResponseEntity<Object> readById(@PathVariable Long id) {
         try {
-            Optional<Client> client = service.readById(id);
+            Optional<Product> client = service.readById(id);
             if (client.isPresent()) {
                 return ResponseEntity.ok(client.get());
             } else {
@@ -54,25 +55,28 @@ public class ClientsController {
     }
 
     @PatchMapping("/{id}")
-    public ResponseEntity<Client> update(@PathVariable Long id, @RequestBody Client client) {
+    public ResponseEntity<Product> update(@PathVariable Long id, @RequestBody Product product) {
         try {
-            Optional<Client> clientToUpdate = service.readById(id);
-            if(clientToUpdate.isPresent()) {
-                Client updatedClient = clientToUpdate.get();
-                if (client.getName() != null) {
-                    updatedClient.setName(client.getName());
+            Optional<Product> productToUpdate = service.readById(id);
+            if (productToUpdate.isPresent()) {
+                Product updatedProduct = productToUpdate.get();
+                if (product.getCode() != null) {
+                    updatedProduct.setCode(product.getCode());
                 }
-                if (client.getLastname() != null) {
-                    updatedClient.setLastname(client.getLastname());
+                if (product.getDescription() != null) {
+                    updatedProduct.setDescription(product.getDescription());
                 }
-                if (client.getDocnumber() != null) {
-                    updatedClient.setDocnumber(client.getDocnumber());
+                if (product.getStock() != null) {
+                    updatedProduct.setStock(product.getStock());
                 }
-                return ResponseEntity.ok(service.save(updatedClient));
+                if (product.getPrice() != 0 ) {
+                    updatedProduct.setPrice(product.getPrice());
+                }
+                return ResponseEntity.ok(service.save(updatedProduct));
             } else {
                 return ResponseEntity.notFound().build();
             }
-        } catch(Exception e) {
+        } catch (Exception e) {
             System.out.println(e);
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
@@ -81,8 +85,8 @@ public class ClientsController {
     @DeleteMapping("/{id}")
     public ResponseEntity<Map<String, Boolean>> delete(@PathVariable Long id) {
         try {
-            Optional<Client> clientToDelete = service.readById(id);
-            if(clientToDelete.isPresent()) {
+            Optional<Product> productToDelete = service.readById(id);
+            if (productToDelete.isPresent()) {
                 service.delete(id);
                 return ResponseEntity.ok().build();
             } else {
@@ -93,6 +97,4 @@ public class ClientsController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
     }
-
-
 }
