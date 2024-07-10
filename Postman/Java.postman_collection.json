@@ -121,14 +121,140 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"description\": \"Algo\"\r\n}",
+					"raw": "{\r\n    \"price\": 400.0\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
 						}
 					}
 				},
-				"url": "http://localhost:8080/api/v1/products/7"
+				"url": "http://localhost:8080/api/v1/products/12"
+			},
+			"response": []
+		},
+		{
+			"name": "readAllCarts",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost:8080/api/v1/carts"
+			},
+			"response": []
+		},
+		{
+			"name": "readCartById",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost:8080/api/v1/carts/1"
+			},
+			"response": []
+		},
+		{
+			"name": "deleteCart",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": "http://localhost:8080/api/v1/carts/1"
+			},
+			"response": []
+		},
+		{
+			"name": "createCart",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"client_id\": 1,\r\n    \"product_id\": 1,\r\n    \"amount\": 1\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:8080/api/v1/carts"
+			},
+			"response": []
+		},
+		{
+			"name": "updateCartById",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:8080/api/v1/carts/1"
+			},
+			"response": []
+		},
+		{
+			"name": "readAllInvoices",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost:8080/api/v1/invoices"
+			},
+			"response": []
+		},
+		{
+			"name": "readInvoiceById",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost:8080/api/v1/invoices/1"
+			},
+			"response": []
+		},
+		{
+			"name": "deleteInvoice",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": "http://localhost:8080/api/v1/invoices/6"
+			},
+			"response": []
+		},
+		{
+			"name": "createInvoice",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:8080/api/v1/invoices/1"
+			},
+			"response": []
+		},
+		{
+			"name": "updateInvoice",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:8080/api/v1/invoices/1"
 			},
 			"response": []
 		}

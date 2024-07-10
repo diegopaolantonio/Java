@@ -3,6 +3,8 @@ package com.proyectoPaolantonio.proyectoPaolantonio.entities;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.List;
+
 @Entity @Table(name = "clients")
 @NoArgsConstructor @ToString @EqualsAndHashCode
 public class Client {
@@ -13,5 +15,11 @@ public class Client {
     @Getter @Setter private String name;
     @Getter @Setter private String lastname;
     @Getter @Setter private Integer docnumber;
+
+    @OneToMany(mappedBy = "client", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @Getter @Setter private List<Cart> carts;
+
+    @OneToMany(mappedBy = "client" , cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @Getter @Setter private List<Invoice> invoices;
 
 }
