@@ -38,7 +38,7 @@ public class InvoicesController {
             @ApiResponse(responseCode = "201", description = "Invoice created successfully", content = @Content(mediaType = "application/json", schema = @Schema(implementation = Invoice.class))),
             @ApiResponse(responseCode = "400", description = "Bad request: typing error", content = @Content(mediaType = "", schema = @Schema())),
             @ApiResponse(responseCode = "404", description = "Client not found", content = @Content(mediaType = "", schema = @Schema())),
-            @ApiResponse(responseCode = "409", description = "Conflict: Carts not found for this Client", content = @Content(mediaType = "", schema = @Schema())),
+            @ApiResponse(responseCode = "409", description = "Conflict: Carts not found for this Client or all are already executed", content = @Content(mediaType = "", schema = @Schema())),
             @ApiResponse(responseCode = "500", description = "Internal server error", content = @Content(mediaType = "", schema = @Schema()))
     })
     @PostMapping
@@ -138,7 +138,7 @@ public class InvoicesController {
     @Operation(summary = "Get all invoices of a client", description = "Retrives all invoices of a client by its 'id'")
     @ApiResponses( value = {
             @ApiResponse(responseCode = "200", description = "Invoice retrives successfully", content = @Content(mediaType = "application/json", schema = @Schema(implementation = Invoice.class))),
-            @ApiResponse(responseCode = "404", description = "client not found", content = @Content(mediaType = "", schema = @Schema())),
+            @ApiResponse(responseCode = "404", description = "Client not found", content = @Content(mediaType = "", schema = @Schema())),
             @ApiResponse(responseCode = "500", description = "Internal server error", content = @Content(mediaType = "", schema = @Schema()))
     })
     @GetMapping("/{clid}/all")
@@ -180,7 +180,7 @@ public class InvoicesController {
     @Operation(summary = "Update one invoice", description = "Updates one invoice by its 'id' with the 'total' sent in the 'body', 'id' cannot be modified, 'total' will be updated to '0' if nothing is sent in the 'body' or if it is 'null', and the time and date will be saved automatically")
     @ApiResponses( value = {
             @ApiResponse(responseCode = "200", description = "Invoice updated successfully", content = @Content(mediaType = "application/json", schema = @Schema(implementation = Invoice.class))),
-            @ApiResponse(responseCode = "400", description = "Bad request: typing error or 'total' cannot be null", content = @Content(mediaType = "", schema = @Schema())),
+            @ApiResponse(responseCode = "400", description = "Bad request: typing error", content = @Content(mediaType = "", schema = @Schema())),
             @ApiResponse(responseCode = "404", description = "Invoice not found", content = @Content(mediaType = "", schema = @Schema())),
             @ApiResponse(responseCode = "500", description = "Internal server error", content = @Content(mediaType = "", schema = @Schema()))
     })

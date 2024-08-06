@@ -94,7 +94,7 @@ public class ClientsController {
     @Operation(summary = "Update one client", description = "Updates one client by its 'id' with the data sent in the 'body', in data 'id' cannot be modified, 'name, lastname and docnumber' cannot be modified to null and 'docnumber' must be unique")
     @ApiResponses( value = {
             @ApiResponse(responseCode = "200", description = "Client updated successfully", content = @Content(mediaType = "application/json", schema = @Schema(implementation = Client.class))),
-            @ApiResponse(responseCode = "400", description = "Bad request: typing error, 'docnumber' cannot be null or 'docnumber' already exists", content = @Content(mediaType = "", schema = @Schema())),
+            @ApiResponse(responseCode = "400", description = "Bad request: typing error, 'docnumber' already exists", content = @Content(mediaType = "", schema = @Schema())),
             @ApiResponse(responseCode = "404", description = "Client not found", content = @Content(mediaType = "", schema = @Schema())),
             @ApiResponse(responseCode = "500", description = "Internal server error", content = @Content(mediaType = "", schema = @Schema()))
     })

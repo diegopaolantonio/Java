@@ -2,185 +2,355 @@
 	"info": {
 		"_postman_id": "56dc9d7f-d612-4ef4-92c6-61cff36c9407",
 		"name": "Java",
-		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "26360573"
 	},
 	"item": [
 		{
-			"name": "readAllClients",
+			"name": "ClientsReadAll",
 			"request": {
 				"method": "GET",
 				"header": [],
-				"url": "http://localhost:8080/api/v1/clients"
+				"url": {
+					"raw": "http://localhost:8080/api/v1/auth",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"auth"
+					]
+				}
 			},
 			"response": []
 		},
 		{
-			"name": "readClientById",
+			"name": "ClientsReadById",
 			"request": {
 				"method": "GET",
 				"header": [],
-				"url": "http://localhost:8080/api/v1/clients/2"
+				"url": {
+					"raw": "http://localhost:8080/api/v1/auth/3",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"auth",
+						"3"
+					]
+				}
 			},
 			"response": []
 		},
 		{
-			"name": "deleteClient",
+			"name": "ClientsDelete",
 			"request": {
 				"method": "DELETE",
 				"header": [],
-				"url": "http://localhost:8080/api/v1/clients/11"
+				"url": {
+					"raw": "http://localhost:8080/api/v1/auth/50",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"auth",
+						"50"
+					]
+				}
 			},
 			"response": []
 		},
 		{
-			"name": "createClient",
+			"name": "ClientsCreate",
 			"request": {
 				"method": "POST",
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"name\": \"Ignacio\",\r\n    \"lastname\": \"Rivera\",\r\n    \"docnumber\": 565555\r\n}",
+					"raw": "{\r\n    \"name\": \"Ignacio\",\r\n    \"lastname\": \"Rivera\",\r\n    \"docnumber\": 5000\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
 						}
 					}
 				},
-				"url": "http://localhost:8080/api/v1/clients"
+				"url": {
+					"raw": "http://localhost:8080/api/v1/auth/register",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"auth",
+						"register"
+					]
+				}
 			},
 			"response": []
 		},
 		{
-			"name": "updateClientById",
+			"name": "ClientsUpdateById",
 			"request": {
 				"method": "PATCH",
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"name\": \"Vicente\",\r\n    \"lastname\": \"Rios\"\r\n}",
+					"raw": "{\r\n    \"id\": 15,\r\n    \"name\": \"Vicente\",\r\n    \"lastname\": \"Rios\",\r\n    \"docnumber\": 5000\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
 						}
 					}
 				},
-				"url": "http://localhost:8080/api/v1/clients/2"
+				"url": {
+					"raw": "http://localhost:8080/api/v1/auth/me",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"auth",
+						"me"
+					]
+				}
 			},
 			"response": []
 		},
 		{
-			"name": "readAllProducts",
+			"name": "ProductsReadAll",
 			"request": {
 				"method": "GET",
 				"header": [],
-				"url": "http://localhost:8080/api/v1/products"
+				"url": {
+					"raw": "http://localhost:8080/api/v1/products",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"products"
+					]
+				}
 			},
 			"response": []
 		},
 		{
-			"name": "readProductById",
+			"name": "ProductsReadById",
 			"request": {
 				"method": "GET",
 				"header": [],
-				"url": "http://localhost:8080/api/v1/products/3"
+				"url": {
+					"raw": "http://localhost:8080/api/v1/products/8",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"products",
+						"8"
+					]
+				}
 			},
 			"response": []
 		},
 		{
-			"name": "deleteProduct",
+			"name": "ProductsDelete",
 			"request": {
 				"method": "DELETE",
 				"header": [],
-				"url": "http://localhost:8080/api/v1/products/8"
+				"url": {
+					"raw": "http://localhost:8080/api/v1/products/8",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"products",
+						"8"
+					]
+				}
 			},
 			"response": []
 		},
 		{
-			"name": "createProduct",
+			"name": "ProductsCreate",
 			"request": {
 				"method": "POST",
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"code\": 123456,\r\n    \"description\": \"Producto nuevo\",\r\n    \"stock\": 9,\r\n    \"price\": 90.0\r\n}",
+					"raw": "{\r\n    \"code\": 1234567,\r\n    \"description\": \"Producto nuevo\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
 						}
 					}
 				},
-				"url": "http://localhost:8080/api/v1/products"
+				"url": {
+					"raw": "http://localhost:8080/api/v1/products",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"products"
+					]
+				}
 			},
 			"response": []
 		},
 		{
-			"name": "updateProductById",
+			"name": "ProductsUpdateById",
 			"request": {
 				"method": "PATCH",
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"price\": 400.0\r\n}",
+					"raw": "{\r\n    \"code\": 12123\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
 						}
 					}
 				},
-				"url": "http://localhost:8080/api/v1/products/12"
+				"url": {
+					"raw": "http://localhost:8080/api/v1/products/6",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"products",
+						"6"
+					]
+				}
 			},
 			"response": []
 		},
 		{
-			"name": "readAllCarts",
+			"name": "CartsReadAll",
 			"request": {
 				"method": "GET",
 				"header": [],
-				"url": "http://localhost:8080/api/v1/carts"
+				"url": {
+					"raw": "http://localhost:8080/api/v1/carts",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"carts"
+					]
+				}
 			},
 			"response": []
 		},
 		{
-			"name": "readCartById",
+			"name": "CartsReadById",
 			"request": {
 				"method": "GET",
 				"header": [],
-				"url": "http://localhost:8080/api/v1/carts/1"
+				"url": {
+					"raw": "http://localhost:8080/api/v1/carts/13/cart",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"carts",
+						"13",
+						"cart"
+					]
+				}
 			},
 			"response": []
 		},
 		{
-			"name": "deleteCart",
+			"name": "CartsReadByClientId",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/v1/carts/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"carts",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CartsDelete",
 			"request": {
 				"method": "DELETE",
 				"header": [],
-				"url": "http://localhost:8080/api/v1/carts/1"
+				"url": {
+					"raw": "http://localhost:8080/api/v1/carts/8",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"carts",
+						"8"
+					]
+				}
 			},
 			"response": []
 		},
 		{
-			"name": "createCart",
+			"name": "CartsCreate",
 			"request": {
 				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"client_id\": 1,\r\n    \"product_id\": 1,\r\n    \"amount\": 1\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": "http://localhost:8080/api/v1/carts"
-			},
-			"response": []
-		},
-		{
-			"name": "updateCartById",
-			"request": {
-				"method": "PATCH",
 				"header": [],
 				"body": {
 					"mode": "raw",
@@ -191,70 +361,242 @@
 						}
 					}
 				},
-				"url": "http://localhost:8080/api/v1/carts/1"
-			},
-			"response": []
-		},
-		{
-			"name": "readAllInvoices",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": "http://localhost:8080/api/v1/invoices"
-			},
-			"response": []
-		},
-		{
-			"name": "readInvoiceById",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": "http://localhost:8080/api/v1/invoices/1"
-			},
-			"response": []
-		},
-		{
-			"name": "deleteInvoice",
-			"request": {
-				"method": "DELETE",
-				"header": [],
-				"url": "http://localhost:8080/api/v1/invoices/6"
-			},
-			"response": []
-		},
-		{
-			"name": "createInvoice",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
+				"url": {
+					"raw": "http://localhost:8080/api/v1/carts/:clid/:pid/:amount",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"carts",
+						":clid",
+						":pid",
+						":amount"
+					],
+					"variable": [
+						{
+							"key": "clid",
+							"value": "6",
+							"description": "Client id"
+						},
+						{
+							"key": "pid",
+							"value": "6",
+							"description": "Product id"
+						},
+						{
+							"key": "amount",
+							"value": "5",
+							"description": "Amount of Product"
 						}
-					}
-				},
-				"url": "http://localhost:8080/api/v1/invoices/1"
+					]
+				}
 			},
 			"response": []
 		},
 		{
-			"name": "updateInvoice",
+			"name": "CartsUpdateById",
 			"request": {
 				"method": "PATCH",
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "",
+					"raw": "{\r\n    \"amount\": 20\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
 						}
 					}
 				},
-				"url": "http://localhost:8080/api/v1/invoices/1"
+				"url": {
+					"raw": "http://localhost:8080/api/v1/carts/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"carts",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "InvoicesReadAll",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/v1/invoices",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"invoices"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "InvoiceReadById",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/v1/invoices/10/invoice",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"invoices",
+						"10",
+						"invoice"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "InvoiceReadAllByClientId",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/v1/invoices/6/all",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"invoices",
+						"6",
+						"all"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "InvoiceReadLastByClientId",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/v1/invoices/6",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"invoices",
+						"6"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "InvoiceDelete",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/v1/invoices/3",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"invoices",
+						"3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "InvoicesCreate",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": 4\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/invoices",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"invoices"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "InvoiceUpdate",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"total\": 2220\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/invoices/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"invoices",
+						"1"
+					]
+				}
 			},
 			"response": []
 		}

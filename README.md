@@ -7,25 +7,26 @@
     - id: Type Long, Autogenerado
     - Name: Type String
     - lastmane: Type String
-    - docnumber: Type Integer
+    - docnumber: Type Integer (nullable = false, unique = true)
 
 - Product
     - id: Type Long, Autogenerado
-    - code: Type Integer
+    - code: Type Integer (nullable = false, unique = true)
     - description: Type String
-    - stock: Type Integer
-    - price: Type double
+    - stock: Type Integer (nullable = false)
+    - price: Type double (nullable = false)
 
 - Cart
     - id: Type Long, Autogenerado
-    - amount: Type Integer
-    - price: Type double
+    - amount: Type Integer (nullable = false)
+    - price: Type double (nullable = false)
+    - executed: Type boolean (nullable = false)
     - client: Type Client
     - product: Type Product
 
 - Invoice
     - id: Type Long, Autogenerado
-    - total: Type double
+    - total: Type double (nullable = false)
     - created_at: Type LocalDateTime
     - client: Type Client
 
@@ -58,12 +59,13 @@
 ## Controllers
   >Se definieron las siguientes rutas para cada servicios:
 
-### Client
-**Ruta**: /api/v1/clients
+### Clients
+**Ruta**: /api/v1/auth
 
-- POST: "/"
+- POST: "/register"
     : Para crear un nuevo client.
     : Body de la peticion: se debe enviar un json con los datos del client necesarios: "name", "lastname" y "docnumber"
+    : "docnumber" no puede ser null y tiene que ser null 
     : example:
 
     ```
@@ -73,33 +75,59 @@
             "docnumber": 565555
         }
     ```
+  
+    - Respuestas
+        : 201: Client created successfully. Client
+        : 400: Bad request: typing error, 'docnumber' cannot be null or 'docnumber' already exists. void
+        : 500: Internal server error. void
 
 - GET: "/"
     : Para leer todos los clients de la base de datos.
     : Body de la peticion: nada
+    
+    - Respuestas
+        : 200: Client retrives successfully. List<Client>
+        : 500: Internal server error. void
 
 - GET: "/id"
     : Para leer un client especificado por el 'id' enviado en la ruta.
     : Body de la peticion: nada
 
-- PUT: "/:id"
-    : Para actualizar un client especificado por el 'id' enviado en la ruta.
-    : Body de la peticion: se debe enviar un json con los datos del client que se quieran actualizar: "name", "lastname" y "docnumber"
+    - Respuestas
+        : 200: Client retrive successfully. Client
+        : 404: Client not found. void
+        : 500: Internal server error. void
+
+- PUT: "/me"
+    : Para actualizar un client especificado por el 'id' enviado en el body.
+    : Body de la peticion: se debe enviar un json con los datos del client que se quieran actualizar: "id", "name", "lastname" y "docnumber"
 
     ```
         {
+            "id": 15,
             "name": "Ignacio",
             "lastname": "Rivera",
             "docnumber": 565555
         }
     ```
 
+    - Respuestas
+        : 200: Client updated successfully. Client
+        : 400: Bad request: typing error, 'docnumber' already exists. void
+        : 404: Client not found. void
+        : 500: Internal server error. void
+
 - DELETE: "/:id"
     : Para eliminar un client especificado por el 'id' enviado en la ruta.
     : Body de la peticion: nada
 
-### Product
-**Ruta**: /api/v1/product
+    - Respuestas
+        : 200: Client deleted successfully. void
+        : 404: Client not found. void
+        : 500: Internal server error. void
+
+### Products
+**Ruta**: /api/v1/products
 
 - POST: "/"
     : Para crear un nuevo product.
@@ -114,13 +142,27 @@
         }
     ```
 
+    - Respuestas
+        : 201: Product created successfully. Product
+        : 400: Bad request: typing error, 'code' cannot be null or 'code' already exists. void
+        : 500: Internal server error. void
+
 - GET: "/"
     : Para leer todos los products de la base de datos.
     : Body de la peticion: nada
 
+    - Respuestas
+        : 200: Products retrives successfully. List<Product>
+        : 500: Internal server error. void
+
 - GET: "/:id"
     : Para leer un product especificado por el 'id' enviado en la ruta.
     : Body de la peticion: nada
+
+    - Respuestas
+        : 200: Product retrive successfully. Product
+        : 404: Product not found. void
+        : 500: Internal server error. void
 
 - PUT: "/:id"
     : Para actualizar un product especificado por el 'id' enviado en la ruta.
@@ -135,37 +177,60 @@
         }
     ```
 
+    - Respuestas
+        : 200: Product updated successfully. Product
+        : 400: Bad request: typing error, 'code' already exists. void
+        : 404: Product not found. void
+        : 500: Internal server error. void
+
 - DELETE: "/:id"
     : Para eliminar un product especificado por el 'id' enviado en la ruta.
     : Body de la peticion: nada
 
-### Cart
+    - Respuestas
+        : 200: Product deleted successfully. void
+        : 404: Product not found. void
+        : 500: Internal server error. void
+
+### Carts
 **Ruta**: /api/v1/carts
 
-- POST: "/"
-    : Para crear un nuevo cart.
-    : Body de la peticion: se debe enviar un json con los datos del cart necesarios: "amount", "client: {id}" y "product: {id}"
+- POST: "/:clid/:pid/:amount"
+    : Para crear un nuevo cart, se deben enviar los datos: "client id", "product id" y "amount".
+    : Body de la peticion: nada"
     : El "price" se toma automaticamente del "price" del "product" agregado.
 
-    ```
-        {
-            "amount": 1,
-            "client": {
-                "id": 120
-            },
-            "product": {
-                "id": 6
-            }
-        }
-    ```
+    - Respuestas
+        : 201: Cart created successfully. Cart
+        : 404: Client or Product not found. void
+        : 409: Conflict: Not enough stock available for the requested product. void
+        : 500: Internal server error. void
 
 - GET: "/"
     : Para leer todos los carts de la base de datos.
     : Body de la peticion: nada
 
+    - Respuestas
+        : 200: Carts retrives successfully. List<Cart>
+        : 500: Internal server error. void
+
 - GET: "/:id"
+  : Para leer los cart de un cliente especificado por el 'id' enviado en la ruta.
+  : Body de la peticion: nada
+
+    - Respuestas
+      : 200: Cart retrives successfully. List<Cart>
+      : 404: Client not found. void
+      : 500: Internal server error. void
+
+- GET: "/:id/cart"
     : Para leer un cart especificado por el 'id' enviado en la ruta.
     : Body de la peticion: nada
+
+    - Respuestas
+        : 200: Cart retrives successfully. Cart
+        : 404: Cart not found. void
+        : 500: Internal server error. void
 
 - PUT: "/:id"
     : Para actializar un cart especificado por el 'id' enviado en la ruta.
@@ -175,18 +240,24 @@
     ```
         {
             "amount": 24,
-            "client": {
-                "id": 10
-            },
-            "product": {
-                "id": 1
-            }
         }
     ```
+
+    - Respuestas
+        : 200: Cart updated successfully. Cart
+        : 400: Bad request: typing error. void
+        : 404: Cart not found. void
+        : 409: Conflict: Cart already executed o not enough stock available for the requested product. void
+        : 500: Internal server error. void
 
 - DELETE: "/:id"
     : Para eliminar un cart especificado por el 'id' enviado en la ruta.
     : Body de la peticion: nada
+
+    - Respuestas
+        : 200: Cart deleted successfully. void
+        : 404: Cart not found. void
+        : 500: Internal server error. void
 
 ### Invoice
 **Ruta**: /api/v1/invoices
@@ -199,19 +270,52 @@
 
     ```
         {
-            "client": {
-                "id": 1
-            }
+            "id": 1
         }
     ```
+  
+    - Respuestas
+        : 201: Invoice created successfully. Invoice
+        : 400: Bad request: typing error. void
+        : 404: Client not found. void
+        : 409: Conflict: Carts not found for this Client or all are already executed. void
+        : 500: Internal server error. void
 
 - GET: "/"
     : Para leer todos los invoices de la base de datos
     : Body de la peticion: nada
 
-- GET: "/:id"
+    - Respuestas
+        : 201: Invoice retrives successfully. List<Invoice>
+        : 500: Internal server error. void
+    
+- GET: "/:id/invoice"
     : Para leer un invoice especificado por el 'id' enviado en la ruta.
     : Body de la peticion: nada
+
+    - Respuestas
+        : 200: Invoice retrives successfully. Invoice
+        : 404: Invoice not found. void
+        : 500: Internal server error. void
+
+- GET: "/:id"
+  : Para leer un invoice de un client especificado por el 'id' enviado en la ruta.
+  : Body de la peticion: nada
+
+    - Respuestas
+        : 200: Invoice retrives successfully. Invoice
+        : 404: Client not found. void
+        : 409: Conflict: no 'Invoice' found for this 'Client'. void
+        : 500: Internal server error. void
+
+- GET: "/:id/all"
+  : Para leer todos los invoices de un client especificado por el 'id' enviado en la ruta.
+  : Body de la peticion: nada
+
+    - Respuestas
+      : 200: Invoice retrives successfully. List<Invoice>
+      : 404: Client not found. void
+      : 500: Internal server error. void
 
 - PUT: "/:id"
     : Para actualizar un invoice especificado por el 'id' enviado en la ruta.
@@ -221,12 +325,21 @@
 
     ```
         {
-            "client": {
-                "id": 1
-            }
+            "total": 1000
         }
     ```
+
+    - Respuestas
+        : 200: Invoice updated successfully. Invoice
+        : 400: Bad request: typing error. void
+        : 404: Invoice not found. void
+        : 500: Internal server error. void
 
 - DELETE: "/:id"
     : Para eliminar un invoice especificado por el 'id' enviado en la ruta.
     : Body de la peticion: nada
+
+    - Respuestas
+        : 200: Invoice deleted successfully. void
+        : 404: Invoice not found. void
+        : 500: Internal server error. void
